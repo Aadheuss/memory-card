@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import CardContainer from "./components/card-container";
-import memoryCardDataList from "./memory-card-data";
+import memoryCardDataList from "./components/memory-card-data";
 import shuffleArr from "./components/fisher-yates-shuffle";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [selectedList, setSelectedList] = useState([]);
 
+  console.log(memoryCardDataList.length);
   const shuffledArr = shuffleArr(memoryCardDataList);
   function handleOnClickSelectedList(name) {
     const notSelected = selectedList.every((item) => item !== name);
