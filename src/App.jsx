@@ -19,9 +19,9 @@ function App() {
     } else {
       if (currentScore > bestScore) {
         setBestScore(currentScore);
-        setCurrentScore(0);
-        setSelectedList([]);
       }
+      setCurrentScore(0);
+      setSelectedList([]);
     }
   }
 
