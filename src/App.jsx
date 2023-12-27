@@ -9,8 +9,22 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [selectedList, setSelectedList] = useState([]);
 
-  console.log(memoryCardDataList.length);
   const shuffledArr = shuffleArr(memoryCardDataList);
+
+  function reduceArrToLength(arr, length) {
+    const reducedArr = [];
+
+    if (reducedArr.length < length) {
+      for (let i = 0; i < length; i++) {
+        reducedArr.push(arr[i]);
+      }
+    }
+
+    return reducedArr;
+  }
+
+  const reducedArr = reduceArrToLength([...shuffledArr], 9);
+
   function handleOnClickSelectedList(name) {
     const notSelected = selectedList.every((item) => item !== name);
     if (notSelected) {
@@ -38,7 +52,7 @@ function App() {
         <p>Don&lsquo;t Click on the same image twice</p>
         {
           <CardContainer
-            cardList={shuffledArr}
+            cardList={reducedArr}
             onClick={handleOnClickSelectedList}
           />
         }
