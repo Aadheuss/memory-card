@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import CardContainer from "./components/card-container";
+import memoryCardDataList from "./memory-card-data";
+import shuffleArr from "./components/fisher-yates-shuffle";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [selectedList, setSelectedList] = useState([]);
+
+  const arrCopy = [...memoryCardDataList];
+  shuffleArr([...memoryCardDataList]);
+
+  console.log(arrCopy);
+  function handleOnClickSelectedList(name) {
+    const notSelected = selectedList.every((item) => item !== name);
+    if (notSelected) {
+      setSelectedList([...selectedList, name]);
+      setCurrentScore(currentScore + 1);
+    } else {
+      if (currentScore > bestScore) {
+        setBestScore(currentScore);
+        setCurrentScore(0);
+        setSelectedList([]);
+      }
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <h1>Memory Cards</h1>
+      </header>
+      <main>
+        <div className="scoreboard">
+          <div>current score: {currentScore}</div>
+          <div>best score: {bestScore}</div>
+        </div>
+        <p>Don&lsquo;t Click on the same image twice</p>
+        {
+          <CardContainer
+            cardList={memoryCardDataList}
+            onClick={handleOnClickSelectedList}
+          />
+        }
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

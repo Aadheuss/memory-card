@@ -1,0 +1,20 @@
+.card {
+  justify-items: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.card img {
+  height: 100%;
+  width: auto;
+}
+.card h2 {
+  padding: 0;
+  margin: 0;
+}
