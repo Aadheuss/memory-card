@@ -49,7 +49,7 @@ function App() {
           <div>current score: {currentScore}</div>
           <div>best score: {bestScore}</div>
         </div>
-        <p>Don&lsquo;t Click on the same image twice</p>
+        <p>Don&lsquo;t Click on the same image twice!</p>
         {
           <CardContainer
             cardList={reducedArr}
