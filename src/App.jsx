@@ -9,10 +9,7 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [selectedList, setSelectedList] = useState([]);
 
-  const arrCopy = [...memoryCardDataList];
-  shuffleArr([...memoryCardDataList]);
-
-  console.log(arrCopy);
+  const shuffledArr = shuffleArr(memoryCardDataList);
   function handleOnClickSelectedList(name) {
     const notSelected = selectedList.every((item) => item !== name);
     if (notSelected) {
@@ -40,7 +37,7 @@ function App() {
         <p>Don&lsquo;t Click on the same image twice</p>
         {
           <CardContainer
-            cardList={memoryCardDataList}
+            cardList={shuffledArr}
             onClick={handleOnClickSelectedList}
           />
         }
